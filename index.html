@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Işık Kontrolcüsü</title>
+  <meta name="description" content="Firebase Realtime Database ile anlık akıllı ışık ve telefon feneri kontrolü">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d0e13">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-off">
+  <!-- Dinamik Oda Ambiyans Arka Planı -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+  <div class="ambient-grid"></div>
+
+  <!-- Ana Mobil Arayüz Konteynırı -->
+  <main class="app-viewport">
+    <div class="app-screen">
+      
+      <!-- Üst Başlık & Senkronizasyon Rozeti -->
+      <header class="app-header">
+        <h1 class="header-title-main">IŞIK KONTROLCÜSÜ</h1>
+        <div class="live-badge" id="liveBadge" title="Firebase Bağlantı Durumu">
+          <span class="badge-dot"></span>
+          <span class="badge-text" id="badgeText">CANLI</span>
+        </div>
+      </header>
+
+      <!-- Ortadaki Güç Butonu & Durum -->
+      <section class="power-zone">
+        <div class="glow-halo" id="glowHalo"></div>
+        
+        <!-- Büyük Yuvarlak Güç Butonu -->
+        <button class="power-button" id="powerBtn" aria-label="Işığı Aç veya Kapat">
+          <div class="btn-inner">
+            <svg class="power-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M18.36 6.64a9 9 0 1 1-12.73 0" stroke-width="2.6" stroke-linecap="round"/>
+              <line x1="12" y1="2" x2="12" y2="12" stroke-width="2.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Işık Durum Metni -->
+        <div class="status-indicator">
+          <div class="status-title" id="statusTitle">IŞIK KAPALI</div>
+        </div>
+
+        <!-- Telefonun Fenerini Aç / Kapat Butonu -->
+        <div class="flashlight-container">
+          <button class="flashlight-btn" id="flashlightBtn" aria-label="Telefon Fenerini Aç veya Kapat">
+            <svg class="flashlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M18 6V2H6v4l3 3v13h6V9l3-3z" stroke-linejoin="round"/>
+              <line x1="6" y1="6" x2="18" y2="6"/>
+              <line x1="10" y1="12" x2="14" y2="12"/>
+            </svg>
+            <span id="flashlightText">FENERİ AÇ</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Gizli veya Boş Alt Bölüm (Temiz, minimalist sonlandırma) -->
+      <footer class="app-bottom-spacer"></footer>
+
+    </div>
+  </main>
+
+  <!-- Firebase SDK (v9 compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
